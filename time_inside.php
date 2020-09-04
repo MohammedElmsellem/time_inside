@@ -3,32 +3,30 @@
 function insideTwoTimes($timeToSearch, $minTmie, $maxTime) {
     
     $dt1 = DateTime::createFromFormat("H:i", $timeToSearch);
-    $dt2 = DateTime::createFromFormat("H:i", $minTmie);
+    $dt2 = DateTime::createFromFormat("H:i", $minTime);
     $dt3 = DateTime::createFromFormat("H:i", $maxTime);
-    
-    if ($dt2>=$dt3){
+
+    if ($dt2 >= $dt3) {
         $dt4 = DateTime::createFromFormat("H:i", "23:59");
-        
-        if ($dt1>=$dt2&&$dt1<=$dt4){
+
+        if ($dt1 >= $dt2 && $dt1 <= $dt4) {
             return true;
         } else {
-            
             $dt5 = DateTime::createFromFormat("H:i", "00:00");
             $dt5->modify("+1 day");
             $dt1->modify("+1 day");
             $dt3->modify("+1 day");
-            
-            if ($dt1>=$dt5&&$dt1<$dt3){
+
+            if ($dt1 >= $dt5 && $dt1 < $dt3) {
                 return true;
             }
-            return false;
         }
     } else {
-        if ($dt1>=$dt2&&$dt1<$dt3){
+        if ($dt1 >= $dt2 && $dt1 < $dt3) {
             return true;
         }
-        return false;
     }
+    return false;
 }
 
 // Tests
